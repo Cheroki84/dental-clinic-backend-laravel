@@ -5,14 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cliente extends Model
+class Cita extends Model
 {
     use HasFactory;
-
-    protected $guarded = [];
-
-    public function citas()
-    {
-        return $this->hasMany('App\Models\Cita');
-    }
 }
