@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('clientesConCitas', [ClienteController::class, 'indexAll']);
 Route::apiResource('clientes', ClienteController::class);
 Route::get('citas', [CitaController::class, 'indexAll']);
 Route::apiResource('cliente.citas', CitaController::class);

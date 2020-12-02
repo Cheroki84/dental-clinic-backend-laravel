@@ -19,6 +19,12 @@ class ClienteController extends Controller
         return $clientes;
     }
 
+    public function indexAll()
+    {
+        $clientes=Cliente::with('citas')->get();
+        return $clientes;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

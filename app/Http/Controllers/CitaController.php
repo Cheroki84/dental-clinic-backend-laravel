@@ -20,7 +20,7 @@ class CitaController extends Controller
      */
     public function index($cliente)
     {
-        $citas = DB::table('citas')->where('cliente_id', '=', $cliente)->get();
+        $citas = Cita::where('cliente_id', '=', $cliente)->get();
         return $citas;
     }
 
