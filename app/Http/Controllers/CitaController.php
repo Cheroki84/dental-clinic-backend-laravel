@@ -4,17 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\Cita;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CitaController extends Controller
 {
+
+    public function indexAll()
+    {
+        return Cita::all();
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($cliente)
     {
-        //
+        $citas = DB::table('citas')->where('cliente_id', '=', $cliente)->get();
+        return $citas;
     }
 
     /**
