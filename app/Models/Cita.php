@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Cita extends Model
 {
     use HasFactory;
+
+    public function dentistas()
+    {
+        return $this->belongsToMany('App\Models\Dentista','dentista_cita');
+    }
 }

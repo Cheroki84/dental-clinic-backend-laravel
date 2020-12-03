@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Cita;
 use App\Models\Cliente;
+use App\Models\Dentista;
 use Illuminate\Database\Seeder;
 
 class ClienteSeeder extends Seeder
@@ -19,5 +20,7 @@ class ClienteSeeder extends Seeder
             $citas=rand(2,5);
             Cliente::factory(1)->has(Cita::factory()->count($citas))->create();
         }
+
+        
     }
 }

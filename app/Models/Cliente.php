@@ -15,4 +15,9 @@ class Cliente extends Model
     {
         return $this->hasMany('App\Models\Cita');
     }
+
+    public function dentistas()
+    {
+        return $this->belongsToMany('App\Models\Dentista','dentista_cita');
+    }
 }
