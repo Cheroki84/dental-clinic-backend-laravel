@@ -4,12 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Passport\HasApiTokens;
 
 class Cliente extends Model
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory;
 
     protected $guarded = [];
+
+    protected $hidden = [
+        'password'
+    ];
 
     public function citas()
     {

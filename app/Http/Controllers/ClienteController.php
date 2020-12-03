@@ -44,6 +44,7 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         $input=$request->all();
+        $input['password']=bcrypt($input['password']);
 
         $rules=[
             'nombre' => 'required',
