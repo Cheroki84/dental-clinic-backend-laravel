@@ -20,6 +20,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('clientes/register', [ClienteController::class,'store']);
+Route::post('clientes/login', [ClienteController::class, 'login'])->name('login');
+
 Route::get('clientesConCitas', [ClienteController::class, 'indexAll']);
 Route::apiResource('clientes', ClienteController::class);
 Route::get('citas', [CitaController::class, 'indexAll']);

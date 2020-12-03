@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class ClienteController extends Controller
@@ -65,6 +66,17 @@ class ClienteController extends Controller
         }else{
             $cliente=Cliente::create($input);
             return $cliente;
+        }
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if(Auth::attempt(['email'=> $credentials['email'], 'password' => $credentials['password']])){
+            return response()->json(['message'=>'Correcto'],200);
+        }else{
+            return response()->json(['error'=>'No autenticado'],403);
         }
     }
 
