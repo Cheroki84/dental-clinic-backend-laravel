@@ -22,8 +22,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('clientes/register', [ClienteController::class,'store']);
 Route::post('clientes/login', [ClienteController::class, 'login'])->name('login');
+Route::get('clientes/logout', [ClienteController::class, 'logout'])->middleware('auth:api');
 
 Route::get('clientesConCitas', [ClienteController::class, 'indexAll']);
-Route::apiResource('clientes', ClienteController::class);
+Route::apiResource('clientes', ClienteController::class)->middleware('auth:api');
 Route::get('citas', [CitaController::class, 'indexAll']);
 Route::apiResource('cliente.citas', CitaController::class);

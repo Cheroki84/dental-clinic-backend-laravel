@@ -87,6 +87,14 @@ class ClienteController extends Controller
         }
     }
 
+    public function logout(Request $request)
+    {
+        $token = $request->user()->token();
+        $token->revoke();
+
+        return response()->json('Usuario deslogueado', 200);
+    }
+
     /**
      * Display the specified resource.
      *
