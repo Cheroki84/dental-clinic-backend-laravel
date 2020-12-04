@@ -74,9 +74,16 @@ class ClienteController extends Controller
         $credentials = $request->only('email', 'password');
 
         if(Auth::attempt(['email'=> $credentials['email'], 'password' => $credentials['password']])){
-            return response()->json(['message'=>'Correcto'],200);
+            $cliente = Auth::user();
+            $token = $cliente->createToken('tokenClientes')->accessToken;
+
+            $respuesta=[];
+            $respuesta['name']= $cliente->nombre;
+            $respuesta['token']= 'Bearer '.$token;
+            
+            return response()->json($respuesta,200);
         }else{
-            return response()->json(['error'=>'No autenticado'],403);
+            return response()->json(['error'=>'No autenticado'],400);
         }
     }
 
