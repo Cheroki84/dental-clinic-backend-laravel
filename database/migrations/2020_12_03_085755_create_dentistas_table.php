@@ -20,7 +20,7 @@ class CreateDentistasTable extends Migration
             $table->string('email', 128);
             $table->string('password', 128);
             $table->string('telefono', 32);
-            $table->string('foto', 256);
+            $table->string('foto', 256)->nullable(true);
             $table->timestamps();
         });
     }

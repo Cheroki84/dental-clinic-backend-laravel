@@ -17,6 +17,7 @@ class CreateCitasTable extends Migration
             $table->id();
             $table->string('tipo', 128);
             $table->string('descripcion', 256);
+            $table->date('fecha de la cita')->nullable(true);
             $table->decimal('precio', 8, 2);
             $table->timestamps();
 

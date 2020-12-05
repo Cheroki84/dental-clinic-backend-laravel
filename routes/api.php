@@ -26,5 +26,8 @@ Route::get('clientes/logout', [ClienteController::class, 'logout'])->middleware(
 
 Route::get('clientesConCitas', [ClienteController::class, 'indexAll']);
 Route::apiResource('clientes', ClienteController::class)->middleware('auth:api');
+
+
 Route::get('citas', [CitaController::class, 'indexAll']);
+
 Route::apiResource('cliente.citas', CitaController::class);
