@@ -49,17 +49,17 @@ class ClienteController extends Controller
 
         $rules=[
             'nombre' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:App\Models\Cliente,email',
             'password' => 'required'
         ];
 
-        $messajes=[
+        $messages=[
             'nombre.required' => 'El nombre es obligatorio',
             'email.required' => 'El email es obligatorio',
             'password.required' => 'El password es obligatorio'
         ];
 
-        $validator = Validator::make($input,$rules,$messajes);
+        $validator = Validator::make($input,$rules,$messages);
 
         if ($validator->fails()) {
             return response()->json([$validator->errors()],400);
@@ -79,7 +79,7 @@ class ClienteController extends Controller
 
             $respuesta=[];
             $respuesta['name']= $cliente->nombre;
-            $respuesta['token']= 'Bearer '.$token;
+            $respuesta['token']= $token;
             
             return response()->json($respuesta,200);
         }else{

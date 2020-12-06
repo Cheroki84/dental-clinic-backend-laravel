@@ -19,6 +19,7 @@ class Cliente extends Model
     public function citas()
     {
         return $this->hasMany('App\Models\Cita');
+        return $this->belongsToMany('App\Models\Cita','cliente_cita');
     }
 
     public function dentistas()

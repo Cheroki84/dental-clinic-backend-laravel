@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class CitaController extends Controller
 {
@@ -42,7 +43,28 @@ class CitaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input=$request->all();
+
+        $rules=[
+            'tipo' => 'required',
+            'descripcion' => 'required',
+            'precio' => 'required'
+        ];
+
+        $messages=[
+            'tipo.required' => 'El tipo es obligatorio',
+            'descripcion.required' => 'La descripción es obligatoria',
+            'precio.required' => 'El precio es obligatorio'
+        ];
+
+        $validator = Validator::make($input,$rules,$messages);
+
+        if ($validator->fails()) {
+            return response()->json([$validator->errors()], 400);
+        }else{
+            $cita=Cita::create($input);
+            return $cita;
+        }
     }
 
     /**
