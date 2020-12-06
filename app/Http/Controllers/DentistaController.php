@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Dentista;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class DentistaController extends Controller
 {
+
+    protected $guard = 'api-dentistas';
+
+    //protected $table = 'dentistas';
     /**
      * Display a listing of the resource.
      *
@@ -35,7 +41,47 @@ class DentistaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input=$request->all();
+        $input['password']=bcrypt($input['password']);
+
+        $rules=[
+            'nombre' => 'required',
+            'email' => 'required|unique:App\Models\Dentista,email',
+            'password' => 'required'
+        ];
+
+        $messages=[
+            'nombre.required' => 'El nombre es obligatorio',
+            'email.required' => 'El email es obligatorio',
+            'password.required' => 'El password es obligatorio'
+        ];
+
+        $validator = Validator::make($input,$rules,$messages);
+
+        if ($validator->fails()) {
+            return response()->json([$validator->errors()],400);
+        }else{
+            $dentista=Dentista::create($input);
+            return $dentista;
+        }
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if(Auth::attempt(['email'=> $credentials['email'], 'password' => $credentials['password']])){
+            $dentista = Auth::user();
+            $token = $dentista->createToken('tokenClientes')->accessToken;
+
+            $respuesta=[];
+            $respuesta['name']= $dentista->nombre;
+            $respuesta['token']= $token;
+            
+            return response()->json($respuesta,200);
+        }else{
+            return response()->json(['error'=>'No autenticado'],400);
+        }
     }
 
     /**

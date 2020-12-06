@@ -16,10 +16,10 @@ class CreateDentistasTable extends Migration
         Schema::create('dentistas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 128);
-            $table->string('apellidos', 128);
+            $table->string('apellidos', 128)->nullable(true);
             $table->string('email', 128);
             $table->string('password', 128);
-            $table->string('telefono', 32);
+            $table->string('telefono', 32)->nullable(true);
             $table->string('foto', 256)->nullable(true);
             $table->timestamps();
         });

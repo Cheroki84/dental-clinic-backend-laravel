@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CitaController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\DentistaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,9 +28,10 @@ Route::get('clientes/logout', [ClienteController::class, 'logout'])->middleware(
 Route::get('clientesConCitas', [ClienteController::class, 'indexAll']);
 Route::apiResource('clientes', ClienteController::class)->middleware('auth:api');
 
-
 Route::get('citas', [CitaController::class, 'indexAll']);
 Route::post('citas/store', [CitaController::class,'store'])->name('citas.store');
 
-
 Route::apiResource('cliente.citas', CitaController::class);
+
+Route::post('dentistas/register', [DentistaController::class, 'store']);
+Route::post('dentistas/login', [DentistaController::class, 'login'])->name('login');

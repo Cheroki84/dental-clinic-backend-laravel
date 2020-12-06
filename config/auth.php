@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+
 return [
 
     /*
@@ -17,6 +19,8 @@ return [
         'guard' => 'web',
         'passwords' => 'users',
     ],
+
+   
 
     /*
     |--------------------------------------------------------------------------
@@ -53,6 +57,17 @@ return [
             'table' => 'clientes',
             'hash' => false,
         ],
+
+        'dentistas' => [
+            'driver' => 'session',
+            'provider' => 'dentistas',
+        ],
+
+        'api-dentistas' => [
+            'driver' => 'passport',
+            'provider' => 'dentistas',
+            'table' => 'dentistas',
+        ],
     ],
 
     /*
@@ -81,7 +96,12 @@ return [
         'clientes' => [
             'driver' => 'eloquent',
             'model' => App\Models\Cliente::class,
-        ]
+        ],
+
+        'dentistas' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Dentista::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
