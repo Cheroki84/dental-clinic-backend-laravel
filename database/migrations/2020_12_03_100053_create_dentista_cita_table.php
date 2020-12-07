@@ -16,8 +16,8 @@ class CreateDentistaCitaTable extends Migration
         Schema::create('dentista_cita', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('dentista_id')->constrained('dentistas');
-            $table->foreignId('cita_id')->constrained('citas');
+            //$table->foreignId('dentista_id')->constrained('dentistas');
+            //$table->foreignId('cita_id')->constrained('citas');
 
             $table->timestamps();
         });

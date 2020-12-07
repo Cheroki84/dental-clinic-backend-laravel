@@ -17,8 +17,8 @@ class CreateClienteDentistaTable extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->foreignId('cliente_id')->constrained('clientes');
-            $table->foreignId('dentista_id')->constrained('dentistas');
+            //$table->foreignId('cliente_id')->constrained('clientes');
+            //$table->foreignId('dentista_id')->constrained('dentistas');
         });
     }
 

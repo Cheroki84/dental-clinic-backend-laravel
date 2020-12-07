@@ -48,7 +48,8 @@ class CitaController extends Controller
         $rules=[
             'tipo' => 'required',
             'descripcion' => 'required',
-            'precio' => 'required'
+            'precio' => 'required',
+            'cliente_id' => 'required'
         ];
 
         $messages=[

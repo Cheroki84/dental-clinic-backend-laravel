@@ -16,8 +16,8 @@ class CreateCitaClienteTable extends Migration
         Schema::create('cita_cliente', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('cliente_id')->constrained('clientes');
-            $table->foreignId('cita_id')->constrained('citas');
+            //$table->foreignId('cliente_id')->constrained('clientes');
+            //$table->foreignId('cita_id')->constrained('citas');
 
             $table->timestamps();
         });

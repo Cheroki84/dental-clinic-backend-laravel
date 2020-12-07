@@ -75,7 +75,8 @@ class DentistaController extends Controller
             $token = $dentista->createToken('tokenClientes')->accessToken;
 
             $respuesta=[];
-            $respuesta['name']= $dentista->nombre;
+            $respuesta['nombre']= $dentista->nombre;
+            $respuesta['id'] = $dentista->id;
             $respuesta['token']= $token;
             
             return response()->json($respuesta,200);

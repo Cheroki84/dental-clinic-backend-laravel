@@ -19,9 +19,11 @@ class CreateCitasTable extends Migration
             $table->string('descripcion', 256);
             $table->date('fecha de la cita')->nullable(true);
             $table->decimal('precio', 8, 2);
+            $table->foreignId('cliente_id')->constrained('clientes');
+            $table->foreignId('dentista_id')->constrained('dentistas');
+            //$table->integer('dentista_id');
             $table->timestamps();
 
-            $table->foreignId('cliente_id')->constrained('clientes');
         });
     }
 
