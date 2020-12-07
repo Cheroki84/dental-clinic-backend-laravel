@@ -30,6 +30,7 @@ Route::apiResource('clientes', ClienteController::class)->middleware('auth:api')
 
 Route::get('citas', [CitaController::class, 'indexAll']);
 Route::post('citas/store', [CitaController::class,'store'])->name('citas.store');
+Route::delete('citas/{cita}', [CitaController::class, 'destroy']);
 
 Route::apiResource('cliente.citas', CitaController::class);
 

@@ -110,6 +110,7 @@ class CitaController extends Controller
      */
     public function destroy(Cita $cita)
     {
-        //
+        Cita::destroy($cita->id);
+        return redirect()->route('/citas.store');
     }
 }
