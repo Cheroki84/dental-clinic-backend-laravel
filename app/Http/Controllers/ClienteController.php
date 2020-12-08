@@ -78,7 +78,8 @@ class ClienteController extends Controller
             $token = $cliente->createToken('tokenClientes')->accessToken;
 
             $respuesta=[];
-            $respuesta['name']= $cliente->nombre;
+            $respuesta['nombre']= $cliente->nombre;
+            $respuesta['id'] = $cliente->id;
             $respuesta['token']= $token;
             
             return response()->json($respuesta,200);
