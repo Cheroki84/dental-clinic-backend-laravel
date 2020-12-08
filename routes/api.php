@@ -21,9 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('clientes/register', [ClienteController::class,'store']);
-Route::post('clientes/login', [ClienteController::class, 'login'])->name('login');
-Route::get('clientes/logout', [ClienteController::class, 'logout'])->middleware('auth:api');
+
 
 Route::get('clientesConCitas', [ClienteController::class, 'indexAll']);
 Route::apiResource('clientes', ClienteController::class)->middleware('auth:api');
@@ -36,3 +34,9 @@ Route::apiResource('cliente.citas', CitaController::class);
 
 Route::post('dentistas/register', [DentistaController::class, 'store']);
 Route::post('dentistas/login', [DentistaController::class, 'login'])->name('login');
+
+Route::group(['middleware' => ['cors']], function () {
+    Route::post('clientes/register', [ClienteController::class,'store']);
+    Route::post('clientes/login', [ClienteController::class, 'login'])->name('login');
+    Route::get('clientes/logout', [ClienteController::class, 'logout'])->middleware('auth:api');
+});
