@@ -2,13 +2,6 @@
 
 use Illuminate\Support\Str;
 
- $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-
-$host = $url["us-cdbr-east-02.cleardb.com"];
-$username = $url["b3d6dec764600b"];
-$password = $url["b53f9748"];
-$database = substr($url["mysql://b3d6dec764600b:b53f9748@us-cdbr-east-02.cleardb.com/heroku_96ddb730fa7a9b6?"], 1);
- 
 return [
 
     /*
@@ -42,16 +35,16 @@ return [
 
     'connections' => [
 
-         'dental-clinic-b-laravel' => array(
+         'dental-clinic-b-laravel' => [
             'driver' => 'mysql',
-            'host' => $host,
-            'database' => $database,
-            'username' => $username,
-            'password' => $password,
+            'host' => 'us-cdbr-east-02.cleardb.com',
+            'database' => 'mysql://b3d6dec764600b:b53f9748@us-cdbr-east-02.cleardb.com/heroku_96ddb730fa7a9b6?',
+            'username' => 'b3d6dec764600b',
+            'password' => 'b53f9748',
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
-        ), 
+         ], 
 
         'sqlite' => [
             'driver' => 'sqlite',
