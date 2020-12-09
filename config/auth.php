@@ -58,15 +58,15 @@ return [
             'hash' => false,
         ],
 
-        'dentistas' => [
+        /* 'dentistas' => [
             'driver' => 'session',
             'provider' => 'dentistas',
-        ],
+        ], */
 
         'api-dentistas' => [
             'driver' => 'passport',
             'provider' => 'dentistas',
-            'table' => 'dentistas',
+            'hash' => false,
         ],
     ],
 
